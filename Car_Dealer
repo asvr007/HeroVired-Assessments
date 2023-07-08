@@ -110,3 +110,26 @@ public class Car {
 }
 
 
+
+Testcases:
+------------------------
+
+Input 1:
+Select car model: Taigun Topline
+Do you need Insurance: yes
+Do you need Additional Accessories: yes
+Dealer discount: 20,000
+
+Output 1:
+Total cost 19,38,290 
+
+-----------------------
+Input 2:
+Select car model: Polo Trendline
+Do you need Insurance: no
+Do you need Additional Accessories: no
+Dealer discount: 0
+
+Output 2:
+Total cost 9,94,990
+
