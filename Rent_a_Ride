@@ -1,0 +1,86 @@
+
+Driver.java:
+-----------------------------------
+import java.util.List;
+
+class Driver {
+    String name;
+    String carModel;
+    double rating;
+    int distanceFromCustomer;
+    List<String> preferredDestinations;
+
+    public Driver(String name, String carModel, double rating, int distanceFromCustomer, List<String> preferredDestinations) {
+        this.name = name;
+        this.carModel = carModel;
+        this.rating = rating;
+        this.distanceFromCustomer = distanceFromCustomer;
+        this.preferredDestinations = preferredDestinations;
+    }
+}
+
+
+RentDetails.java:
+------------------------------------
+
+import java.util.*;
+public class RentDetails{
+    public static void main(String[] args) {
+     
+        int rideDistance;
+        String carRequested;
+        String destination;
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Customer Ride Distance: ");
+        rideDistance = sc.nextInt();
+        System.out.println("Car requested: ");
+        carRequested = sc.next();
+        System.out.println("Destination: ");
+        destination = sc.next();
+
+        List<Driver> drivers = new ArrayList<>();
+        drivers.add(new Driver("A", "5 Seater", 4.0, 500, Arrays.asList("Gurgaon", "Noida", "Delhi")));
+        drivers.add(new Driver("B", "HatchBack", 4.3, 1000, Arrays.asList("Gurgaon")));
+        drivers.add(new Driver("C", "5 Seater", 4.8, 200, Arrays.asList("Noida")));
+        drivers.add(new Driver("D", "Sedan", 4.1, 700, Arrays.asList("Noida")));
+        drivers.add(new Driver("E", "5 Seater", 4.7, 430, Arrays.asList("Delhi")));
+
+        
+        List<Driver> filteredDrivers = new ArrayList<>();
+        for (Driver driver : drivers) {
+            if (driver.rating >= 4.0 && driver.carModel.equals(carRequested)) {
+                filteredDrivers.add(driver);
+            }
+        }
+
+       
+        filteredDrivers.sort(Comparator.comparingInt(d -> d.distanceFromCustomer));
+
+   
+        if (filteredDrivers.isEmpty()) {
+            System.out.println("No available drivers matching your request.");
+            return;
+        }
+
+       
+        Driver closestDriver = null;
+        for (Driver driver : filteredDrivers) {
+            if (driver.preferredDestinations.contains(destination)) {
+                closestDriver = driver;
+                break;
+            }
+        }
+
+       
+        if (closestDriver == null) {
+            System.out.println("No driver available for your requested destination.");
+            return;
+        }
+
+       
+        double charge = rideDistance * 8;
+        System.out.println("Driver " + closestDriver.name + " will take you to the destination.");
+        System.out.println("Your charge will be Rs " + charge + ".");
+    }
+}
