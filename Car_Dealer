@@ -1,5 +1,5 @@
 CarCost.java:
-----------------------------------------------------
+---------------------------------------------------
 
 import java.util.Scanner;
 public class CarCost extends Additional_Taxes{
